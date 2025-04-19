@@ -182,14 +182,16 @@ class _ActorsByMovie extends ConsumerWidget {
   }
 }
 
-class _CustomSliverAppBar extends StatelessWidget {
+class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
   
   const _CustomSliverAppBar({super.key, required this.movie});
 
   @override
-  Widget build(BuildContext context) {
-    final DatabaseServices _databaseServices = DatabaseServices();
+  Widget build(BuildContext context,WidgetRef ref) {
+    // Accediendo al Provider de la base de datos
+    
+    final _databaseServices = ref.read(databaseProvider);
     final size = MediaQuery.of(context).size;
 
     return SliverAppBar(
@@ -202,7 +204,7 @@ class _CustomSliverAppBar extends StatelessWidget {
             _databaseServices.addMovie(MovieMapper.movieToDatabaseModel(movie));
             print("Se ha agregado a favoritos");
 
-            // ref.read(favoritesProvider.notifier).toggleFavorite(movie);
+
           },
           icon: const Icon(Icons.favorite_outline_outlined),
           color: Colors.white,

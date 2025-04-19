@@ -1,4 +1,5 @@
 import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:cinemapedia/services/database_services.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,7 +33,10 @@ final upcomingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>
   );
 });
 
-
+// Proveedor para DatabaseServices
+final databaseProvider = Provider<DatabaseServices>((ref) {
+  return DatabaseServices();
+});
 
 
 typedef MovieCallback = Future<List<Movie>> Function({int page});
