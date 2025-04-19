@@ -200,7 +200,6 @@ class _CustomSliverAppBar extends ConsumerWidget {
       actions: [
         IconButton(
           onPressed: () {
-            //TODO Add to favorites
             _databaseServices.addMovie(MovieMapper.movieToDatabaseModel(movie));
             print("Se ha agregado a favoritos");
 

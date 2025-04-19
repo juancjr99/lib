@@ -19,6 +19,13 @@ final appRouter = GoRouter(
             return  MovieScreen(movieId: movieId);
       },
       ),
+
+      GoRoute(
+      path: '/favorites',
+      name: FavoritesScreen.name ,
+      builder: (context, state) =>  FavoritesScreen(), // Tu pantalla de favoritos
+    ),
+
       ]
       ),
 
