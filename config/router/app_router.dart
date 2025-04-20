@@ -3,8 +3,26 @@ import 'package:cinemapedia/presentation/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/authlayout',
   routes: [
+    GoRoute(
+      path: '/authlayout',
+      name: AuthLayoutScreen.name ,
+      builder: (context, state) =>  AuthLayoutScreen(),
+      ),
+      
+      GoRoute(
+    path: '/login',
+    name: LoginScreen.name ,
+    builder: (context, state) =>  LoginScreen(),
+    ),
+
+    GoRoute(
+    path: '/signup',
+    name: Signup.name ,
+    builder: (context, state) =>  Signup(),
+    ),
+
     GoRoute(
       path: '/',
       name: HomeScreen.name ,

@@ -8,9 +8,12 @@ class CustomBottomNavigation extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final _navigationProvider = ref.watch(navigationProvider);
+    final colors = Theme.of(context).colorScheme;
 
     return BottomNavigationBar(
       elevation: 0,
+      selectedItemColor: colors.primary,
+      
       onTap: (index) {
         ref.read(navigationProvider).setIndex(index, context);
       },
