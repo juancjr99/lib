@@ -1,7 +1,7 @@
 // providers/navigation_provider.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+
 
 // El ChangeNotifier
 class NavigationProvider extends ChangeNotifier {
@@ -18,15 +18,19 @@ class NavigationProvider extends ChangeNotifier {
         break;
       case 1:
         break;
+      case 2:
+        break;
     }
   }
 
   void updateIndexByRoute(String location) {
     if (location.startsWith('/favorites')) {
       _selectedIndex = 1;
-    } else {
+    } else if (location.startsWith('/account')) {
+      _selectedIndex = 2;
+    } else { 
       _selectedIndex = 0;
-    }
+      }
     notifyListeners();
   }
 }

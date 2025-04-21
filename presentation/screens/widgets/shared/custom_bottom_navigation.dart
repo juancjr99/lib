@@ -25,15 +25,14 @@ class CustomBottomNavigation extends ConsumerWidget {
           
           ),
           
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.label_outline),
-        //   label: 'Categorias',
-        //   ),
-
           BottomNavigationBarItem(
           icon: Icon(Icons.favorite_outline),
           label: 'Favoritos',
+          ),
 
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle_outlined),
+          label: 'Account',
           ),
       ],
     );

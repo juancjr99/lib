@@ -44,8 +44,26 @@ final appRouter = GoRouter(
       builder: (context, state) =>  FavoritesScreen(), // Tu pantalla de favoritos
     ),
 
+    GoRoute(
+      path: '/account',
+      name: AccountScreen.name ,
+      builder: (context, state) =>  AccountScreen(),
+      ),
+
       ]
       ),
+
+      GoRoute(
+      path: '/resetpassword',
+      name: ResetPasswordScreen.name ,
+      builder: (context, state) =>  ResetPasswordScreen(), // Tu pantalla de favoritos
+    ),
+
+    GoRoute(
+      path: '/username',
+      name: UserNameScreen.name ,
+      builder: (context, state) =>  UserNameScreen(), // Tu pantalla de favoritos
+    ),
 
 
   ]

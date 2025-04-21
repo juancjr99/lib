@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/infrastructure/mappers/movie_mapper.dart';
-import 'package:cinemapedia/infrastructure/models/moviedb/movie_database_model.dart';
+
 import 'package:cinemapedia/services/database_services.dart';
 import 'package:equatable/equatable.dart';
 

@@ -23,6 +23,7 @@ class HomeScreen extends ConsumerWidget  {
         children:[
           _HomeView(),
           FavoritesScreen(),
+          AccountScreen(),
         ]),
       bottomNavigationBar: CustomBottomNavigation(),
     );

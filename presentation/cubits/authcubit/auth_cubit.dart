@@ -74,7 +74,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> updateUsername(String username) async {
     try {
       emit(AuthLoading()); // Emite el estado de carga
-      await currentUser!.updateProfile(displayName: username);
+      await currentUser!.updateDisplayName(username);
       emit(AuthSuccess(currentUser!)); // Emite el estado de éxito con el usuario
     } catch (e) {
       emit(AuthError(e.toString())); // Emite el estado de error con el mensaje
@@ -112,7 +112,7 @@ class AuthCubit extends Cubit<AuthState> {
       password: currentPassword,
     );
     await currentUser!.reauthenticateWithCredential(credential);
-    await firebaseAuth.sendPasswordResetEmail(email: email);
+    await currentUser!.updatePassword(password);
     emit(AuthSuccess(currentUser!)); // Emite el estado de éxito
     }catch(e){
       emit(AuthError(e.toString())); // Emite el estado de error con el mensaje

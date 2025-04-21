@@ -1,24 +1,26 @@
 
+
 import 'package:cinemapedia/presentation/cubits/authcubit/auth_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-class Signup extends StatelessWidget {
-  static const name = 'SignupScreen';
+class ResetPasswordScreen extends StatelessWidget {
+  static const name = 'ResetPasswordScreen';
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _username = TextEditingController();
+  final _newPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  Signup({Key? key}) : super(key: key);
+  ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Signup'),
+        title: Text('Cambiar Contraseña'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,23 +43,6 @@ class Signup extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-
-                    TextFormField(
-                    controller: _username,
-                    decoration: InputDecoration(
-                      labelText: 'Nombre de Usuario',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor ingresa nuevo nombre de usuario';
-                      }
-                      return null;
-                    },
-                  ),
-                  
-                                  SizedBox(height: 16.0),
-
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
@@ -91,26 +76,43 @@ class Signup extends StatelessWidget {
                     },
                   ),
 
+                  SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: _newPasswordController,
+                    decoration: InputDecoration(
+                      labelText: 'Contraseña Nueva',
+                      border: OutlineInputBorder(),
+                    ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor ingresa tu contraseña';
+                      }
+                      return null;
+                    },
+                  ),
                   SizedBox(height: 10.0),
                   if (state is AuthLoading) 
                     Center(child: CircularProgressIndicator()), // Muestra el indicador de carga
-                  SizedBox(height: 18.0),
+                    
+                   SizedBox(height: 10.0),
                   if (state is! AuthLoading) 
                   ElevatedButton(
                     onPressed: () async{
                       if (_formKey.currentState!.validate()) {
                         try{
-                          await context.read<AuthCubit>().signUp(
+                         await context.read<AuthCubit>().ResetPasswordFronCurrentPassword(
                               email: _emailController.text,
-                              password: _passwordController.text,
+                              currentPassword: _passwordController.text,
+                              password: _newPasswordController.text,
                             );
-                          await context.read<AuthCubit>().updateUsername(_username.text,);  
-                        }catch (e) {
-                                  // Mostrás un diálogo, snackbar, lo que quieras
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Error: ${e.toString()}')),
-                                  );
-                                }
+                        }on FirebaseAuthException catch(e){
+                          print(e);
+                        }
+                        // context.read<AuthCubit>().signIn(
+                        //       email: _emailController.text,
+                        //       password: _passwordController.text,
+                        //     );
                       }
                     },
                     child: Text('Registrarse'),
