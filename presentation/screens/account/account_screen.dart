@@ -1,5 +1,6 @@
 
 import 'package:cinemapedia/presentation/cubits/authcubit/auth_cubit.dart';
+import 'package:cinemapedia/presentation/cubits/favoritecubit/favorite_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,6 +63,7 @@ class AccountScreen extends StatelessWidget {
               onTap: () async{
                 try{
                   await authCubit.signOut();
+                  // context.read<FavoritesCubit>().updateUser();
                 }on FirebaseAuthException catch(e){
                  // Mostrás un diálogo, snackbar, lo que quieras
                   ScaffoldMessenger.of(context).showSnackBar(

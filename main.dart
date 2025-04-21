@@ -27,8 +27,7 @@ Future<void> main() async {
           BlocProvider<FavoritesCubit>(
             create: (context) => FavoritesCubit(
               DatabaseServices(),
-            ),
-            ),
+            ),),
             BlocProvider<AuthCubit>(
               create: (context) => AuthCubit(),
           ),

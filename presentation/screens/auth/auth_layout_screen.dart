@@ -1,7 +1,8 @@
-
 import 'package:cinemapedia/presentation/cubits/authcubit/auth_cubit.dart';
+import 'package:cinemapedia/presentation/cubits/favoritecubit/favorite_cubit.dart';
 import 'package:cinemapedia/presentation/screens/auth/welcome_screen.dart';
 import 'package:cinemapedia/presentation/screens/movies/home_screen.dart';
+import 'package:cinemapedia/services/database_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,9 +11,9 @@ class AuthLayoutScreen extends StatelessWidget {
   const AuthLayoutScreen({
     super.key,
     this.pageIfNotconnected,
-    });
+  });
 
-    final Widget? pageIfNotconnected;
+  final Widget? pageIfNotconnected;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,14 @@ class AuthLayoutScreen extends StatelessWidget {
         if (state is AuthLoading) {
           return const AppLoadingScreen();
         } else if (state is AuthSuccess) {
-          return const HomeScreen();
+          // return  BlocProvider(
+          //   create: (context) => FavoritesCubit(
+          //     DatabaseServices(),
+          //   ),
+          //   child: const HomeScreen(),
+          // );
+           return const HomeScreen();
+
         } else if (state is AuthError) {
           // Puedes mostrar un snackbar, un alert o simplemente pasar a la pantalla no conectada
           return pageIfNotconnected ?? const WelcomePage();
@@ -33,7 +41,6 @@ class AuthLayoutScreen extends StatelessWidget {
     );
   }
 }
-
 
 class AppLoadingScreen extends StatelessWidget {
   const AppLoadingScreen({super.key});

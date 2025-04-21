@@ -1,6 +1,7 @@
 
 
 import 'package:cinemapedia/presentation/cubits/authcubit/auth_cubit.dart';
+import 'package:cinemapedia/presentation/cubits/favoritecubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,6 +86,7 @@ class LoginScreen extends StatelessWidget {
                           await context.read<AuthCubit>().signIn(
                               email: _emailController.text,
                               password: _passwordController.text,);
+                              context.read<FavoritesCubit>().updateUser();
                           }catch (e) {
                                   // Mostrás un diálogo, snackbar, lo que quieras
                                   ScaffoldMessenger.of(context).showSnackBar(

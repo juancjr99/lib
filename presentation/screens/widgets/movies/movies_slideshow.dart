@@ -1,7 +1,9 @@
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:cinemapedia/presentation/cubits/favoritecubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class MoviesSlideshow extends StatelessWidget {
@@ -12,9 +14,7 @@ class MoviesSlideshow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context).colorScheme;
-
     return SizedBox(
       height: 210,
       width: double.infinity,
@@ -45,6 +45,7 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final decoration = BoxDecoration(
       borderRadius: BorderRadius.circular(20),
       boxShadow: const [

@@ -1,8 +1,10 @@
 
+import 'package:cinemapedia/presentation/cubits/favoritecubit/favorite_cubit.dart';
 import 'package:cinemapedia/presentation/providers/navigation/navigation_provider.dart';
 import 'package:cinemapedia/presentation/screens/widgets/widgets.dart';
 import 'package:cinemapedia/presentation/providers/movies/movies/movies_slideshow_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cinemapedia/presentation/screens/screens.dart';
 
@@ -16,6 +18,7 @@ class HomeScreen extends ConsumerWidget  {
 
   @override
   Widget build(BuildContext context, ref) {
+
     final navigation = ref.watch(navigationProvider);
     return  Scaffold(
       body: IndexedStack(
@@ -55,7 +58,6 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
 
-    // Esto nunca funciono
 
     final initialLoading = ref.watch(initialLoadingProvider);
 

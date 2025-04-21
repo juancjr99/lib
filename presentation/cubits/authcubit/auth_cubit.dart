@@ -11,8 +11,17 @@ class AuthCubit extends Cubit<AuthState> {
 
   Stream<User?> get authStateChanges => firebaseAuth.authStateChanges();
 
-  AuthCubit() : super(AuthInitial());
+  AuthCubit() : super(AuthInitial()){_checkCurrentUser();}
   
+void _checkCurrentUser() {
+  final user = firebaseAuth.currentUser;
+  if (user != null) {
+    emit(AuthSuccess(user));
+  } else {
+    emit(AuthInitial());
+  }
+}
+
   Future<UserCredential> signIn({
     required String email,
     required String password,
